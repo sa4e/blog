@@ -25,7 +25,8 @@
 ![图片](http://i.imgur.com/uT5wEbH.png)  
 2. 编译 **javac Service.java**  
 3. 找到dubbo-x.x.x.jar,将编译后的Service.class替换掉原来的  
-4. 在**application.properties**中配置使用cglib动态代理`spring.aop.proxy-target-class=true`
+4. 在**application.properties**中配置使用cglib动态代理  
+`spring.aop.proxy-target-class=true`
 
 简单4步就能解决了,当然也有其他的解决办法,可以不用修改源码,缺点是要使用到配置文件,我使用SpringBoot开发一般是全注解,所以就这样了。  
   
