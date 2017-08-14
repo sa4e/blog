@@ -1,14 +1,9 @@
 # blog 一个基于SpringBoot技术栈的个人博客  
 
-----------
-
 主要技术栈:**SpringBoot** + Spring Data JPA + SpringMVC + Thymeleaf + Druid + Dubbo + Redis + Mysql + Tomcat  
 **此博客系统采用的是前后端分离,前端项目地址**:[https://github.com/sa4e/blog-view](https://github.com/sa4e/blog-view "blog-view")
 
 # 2017/8/14 星期一 下午 9:11:36 
-
-----------
-
 服务端的初始导入:
 项目整体架构的初步搭建 + 简单连接测试  
 服务端项目结构如图  
@@ -26,7 +21,8 @@
 我们知道@Serveice注解用来发布服务的,而@Transactional是控制事务管理的,涉及到数据库的**增删改**就要有事务的管理,所以这两个注解在服务层是少不了的了。但是**同时使用就会导致服务发布失败**!  
 ### 解决办法: ###
 打开dubbo的源码包,打开目录com/alibaba/config/annotaion/,找到**Service.java**文件  
-1. 增加一个**@Inherited的注解(记得导包)**![图片](http://i.imgur.com/uT5wEbH.png)  
+1. 增加一个**@Inherited的注解(记得导包)**  
+![图片](http://i.imgur.com/uT5wEbH.png)  
 2. 编译 **javac Service.java**  
 3. 找到dubbo-x.x.x.jar,将编译后的Service.class替换掉原来的  
 4. 在**application.properties**中配置使用cglib动态代理`spring.aop.proxy-target-class=true`
