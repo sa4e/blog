@@ -22,3 +22,9 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+*.versionsBackup
+*.versionsBackup
+blog-interface/pom.xml.versionsBackup
+blog-repository/pom.xml.versionsBackup
+*.versionsBackup
+blog-repository/pom.xml.versionsBackup

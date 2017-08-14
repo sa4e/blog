@@ -1,4 +1,4 @@
-# blog 一个基于SpringBoot技术栈的个人博客  
+# blog 一个基于SpringBoot技术栈的个人博客--->服务端  
 
 主要技术栈:**SpringBoot** + Spring Data JPA + SpringMVC + Thymeleaf + Druid + Dubbo + Redis + Mysql + Tomcat  
 **此博客系统采用的是前后端分离,前端项目地址**:[https://github.com/sa4e/blog-view](https://github.com/sa4e/blog-view "blog-view")
