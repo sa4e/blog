@@ -5,7 +5,7 @@
 
 	<groupId>cn.sa4e</groupId>
 	<artifactId>blog</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>blog</name>
@@ -53,6 +53,12 @@
 				<groupId>io.dubbo.springboot</groupId>
 				<artifactId>spring-boot-starter-dubbo</artifactId>
 				<version>1.0.0</version>
+			</dependency>
+			<!-- SpringBoot Druid -->
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>druid-spring-boot-starter</artifactId>
+				<version>1.1.2</version>
 			</dependency>
 			<!-- SpringBoot Test -->
 			<dependency>
