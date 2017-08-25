@@ -8,8 +8,14 @@ spring:
       driver-class-name: com.mysql.cj.jdbc.Driver
       web-stat-filter:
         enabled: true
-      
+#JPA相关      
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
+#日志配置      
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+  path: E:\log
