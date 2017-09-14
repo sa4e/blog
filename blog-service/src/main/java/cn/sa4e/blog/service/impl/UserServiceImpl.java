@@ -10,6 +10,7 @@ import com.alibaba.dubbo.config.annotation.Service;
 import cn.sa4e.blog.model.User;
 import cn.sa4e.blog.repository.UserRepository;
 import cn.sa4e.blog.service.IUserService;
+import cn.sa4e.blog.utils.MD5Utils;
 /**
  * UserService实现类
  * @author Sa4e
@@ -29,14 +30,21 @@ public class UserServiceImpl implements IUserService{
 	
 	@Override
 	@Transactional
-	public void insert(User user) {
+	public void insert(User user) throws Exception {
 		userRepository.save(user);
 	}
 
 	@Override
-	public List<User> getAllUser() {
+	public List<User> getAllUser() throws Exception {
 		List<User> userList = userRepository.findAll();
 		return userList;
+	}
+
+	@Override
+	public User login(String username, String password) throws Exception {
+		password = MD5Utils.md5(password);
+		User user = userRepository.findByUsernameAndPassword(username, password);
+		return user;
 	}
 
 }
