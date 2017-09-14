@@ -1,60 +1,83 @@
 package cn.sa4e.blog.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.GenericGenerator;
 
 /**
  * User实体
  * @author Sa4e e-mail:hasaigive@gmail.com
- * @date 2017年8月14日 上午10:24:54
+ * @date 2017年9月12日 下午6:41:32
  */
 @Entity
 public class User implements Serializable{
 	
 private static final long serialVersionUID = -3822774101700955700L;
-	//TODO User实体简单测试,待完善
+
+	//uuid生成策略
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long uid;
+	@GenericGenerator(name = "system-uuid",strategy = "uuid")
+	@GeneratedValue(generator = "system-uuid")
+	private String uid;
+	
+	@Column(nullable = false)
 	private String username;
+	
+	@Column(nullable = false)
 	private String password;
-	private String email;
+	
+	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	private Set<Blog> blogs = new HashSet<>();
 	
 	protected User() {
 	}
-	
-	public User(String username, String password, String email) {
+
+	public User(String username, String password, Set<Blog> blogs) {
 		this.username = username;
 		this.password = password;
-		this.email = email;
+		this.blogs = blogs;
 	}
 
-	public Long getUid() {
+	public String getUid() {
 		return uid;
 	}
-	public void setUid(Long uid) {
+
+	public void setUid(String uid) {
 		this.uid = uid;
 	}
+
 	public String getUsername() {
 		return username;
 	}
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
+
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getEmail() {
-		return email;
+
+	public Set<Blog> getBlogs() {
+		return blogs;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+
+	public void setBlogs(Set<Blog> blogs) {
+		this.blogs = blogs;
 	}
+	
 }

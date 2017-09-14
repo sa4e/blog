@@ -1,22 +1,34 @@
 package cn.sa4e.blog.model;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 /**
-* Blog实体
-* @author Sa4e e-mail:hasaigive@gmial.com
-* @date 2017年8月24日
-*/
+ * Blog实体
+ * @author Sa4e e-mail:hasaigive@gmail.com
+ * @date 2017年9月12日 上午10:23:14
+ */
 @Entity
 public class Blog implements Serializable{
 
@@ -27,26 +39,74 @@ public class Blog implements Serializable{
 	private Long id; 
 	
 	@Column(nullable = false)
-	private String title;	//文章标题
+	private String title;		//文章标题
 	
 	@Column(nullable = false)
-	private String summary;	//文章摘要
+	private String summary;		//文章摘要
 	
-	@Column(nullable = false)//不能为空
-	@CreationTimestamp	   //由数据库自动创建时间
-	private Timestamp createTime;	//文章创建时间
+	@Column(nullable = false)	//不能为空
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date createTime;	//文章创建时间
 	
-	@Lob	//大对象，映射 MySQL 的 Long Text 类型
+	@Lob						//大对象，映射 MySQL 的 Long Text 类型
 	@Column(nullable = false)
-	private String content;	//文章内容
+	@Basic(fetch = FetchType.LAZY)	//懒加载
+	private String content;		//文章内容
 	
-	protected Blog() {	//jpa规范
+	@Column(nullable = false,columnDefinition = "tinyint(1)")
+	private Integer display = 1;	//是否显示
+
+	@Column(nullable = false,columnDefinition = "tinyint(1)")
+	private Integer sticky = 0;		//是否置顶
+	
+	@Column(nullable = false)
+	private Integer readSize = 1;	//访问量、热度
+	
+	/*
+	 * 可选属性optional=false,表示category不能为空
+	 * cascade: 级联操作
+	 */
+	//映射多对一关系
+	@ManyToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH},optional = false)
+	@JoinColumn(name = "cid")	//设置在blog表中的关联字段(外键)
+	private Category category;
+	
+	@ManyToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH},optional = false)
+	@JoinColumn(name = "uid")
+	private User user;
+	
+	/*
+	 * 多对多关联关系需要建立一个中间表，所以要用@JoinTable注解来设置中间表的映射关系。
+	 * @JoinTable:
+	 * 	1.name: 中间表的表名
+	 *  2.joinColumns: 配置的是关系维护方主键对应的中间表字段
+	 *  	(1)name: 中间表中的列名
+	 *  	(2)referencedColumnName:　指定主键列的列名
+	 *  3.inverseJoinColumns 配置的是关系被维护一方主键对应的中间表字段(属性同上)
+	 */
+	@ManyToMany(cascade = CascadeType.REFRESH)
+	@JoinTable(name = "blog_tag",
+			   joinColumns= {@JoinColumn(name = "blogId",referencedColumnName = "id")},
+			   inverseJoinColumns= {@JoinColumn(name = "tagId",referencedColumnName = "name")})
+	private Set<Tag> tags = new HashSet<>();
+	
+	protected Blog() {			//jpa规范
+		
 	}
-	
-	public Blog(String title, String summary, String content) {
+
+	public Blog(String title, String summary, Date createTime, String content, Integer display, Integer sticky,
+			Integer readSize, Category category, User user, Set<Tag> tags) {
 		this.title = title;
 		this.summary = summary;
+		this.createTime = createTime;
 		this.content = content;
+		this.display = display;
+		this.sticky = sticky;
+		this.readSize = readSize;
+		this.category = category;
+		this.user = user;
+		this.tags = tags;
 	}
 
 	public Long getId() {
@@ -73,11 +133,11 @@ public class Blog implements Serializable{
 		this.summary = summary;
 	}
 
-	public Timestamp getCreateTime() {
+	public Date getCreateTime() {
 		return createTime;
 	}
 
-	public void setCreateTime(Timestamp createTime) {
+	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
 
@@ -88,21 +148,53 @@ public class Blog implements Serializable{
 	public void setContent(String content) {
 		this.content = content;
 	}
+
+	public Integer getReadSize() {
+		return readSize;
+	}
+
+	public void setReadSize(Integer readSize) {
+		this.readSize = readSize;
+	}
+
+	public Integer getDisplay() {
+		return display;
+	}
+
+	public void setDisplay(Integer display) {
+		this.display = display;
+	}
+
+	public Integer getSticky() {
+		return sticky;
+	}
+
+	public void setSticky(Integer sticky) {
+		this.sticky = sticky;
+	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Set<Tag> getTags() {
+		return tags;
+	}
+
+	public void setTags(Set<Tag> tags) {
+		this.tags = tags;
+	}
 	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
