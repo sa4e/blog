@@ -7,8 +7,11 @@ import cn.sa4e.blog.model.User;
 /**
  * UserRepository接口
  * @author Sa4e e-mail:hasaigive@gmail.com
- * @date 2017年8月14日 上午10:26:44
+ * @date 2017年9月12日 下午6:59:50
  */
-public interface UserRepository extends JpaRepository<User, Long>{
-
+public interface UserRepository extends JpaRepository<User, String>{
+	
+	//登录后台
+	public User findByUsernameAndPassword(String username,String password);
+	
 }

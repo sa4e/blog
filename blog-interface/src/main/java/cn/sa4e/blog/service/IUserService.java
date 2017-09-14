@@ -11,6 +11,7 @@ import cn.sa4e.blog.model.User;
  */
 public interface IUserService {
 	
-	void insert(User user);
-	List<User> getAllUser();
+	void insert(User user) throws Exception;
+	User login(String username,String password) throws Exception;
+	List<User> getAllUser() throws Exception;
 }

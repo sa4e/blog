@@ -13,6 +13,12 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+    properties:
+      hibernate: 
+        format_sql: true
+        #解决懒加载no session的问题
+        enable_lazy_load_no_trans: true
+    
 #日志配置      
 logging:
   level:
