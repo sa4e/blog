@@ -21,7 +21,7 @@
 我们知道@Serveice注解用来发布服务的,而@Transactional是控制事务管理的,涉及到数据库的**增删改**就要有事务的管理,所以这两个注解在服务层是少不了的了。但是**同时使用就会导致服务发布失败**!  
 ### 解决办法: ###
 打开dubbo的源码包,打开目录com/alibaba/config/annotaion/,找到**Service.java**文件  
-1. 增加一个**@Inherited的注解(记得导包)**  
+1. 增加一个 **@Inherited的注解(记得导包)**  
 ![图片](http://i.imgur.com/uT5wEbH.png)  
 2. 编译 **javac Service.java**  
 3. 找到dubbo-x.x.x.jar,将编译后的Service.class替换掉原来的  
@@ -33,7 +33,8 @@
 **注意:服务发布的格式如下:**
 ![图片](http://i.imgur.com/8d2gpzV.png)  
 # 2017/9/14 星期四 下午 11:54:55 
-12号才开始编写的服务端代码,使用springboot来开发进度是真的猛,最核心的一些功能已经编写完成了,相信过几天就能上线0.1版本了,然后就是优化补坑,![](https://i.imgur.com/ErcH4Vf.png)  
+12号才开始编写的服务端代码,使用springboot来开发进度是真的猛,核心的功能代码已经编写完成了,还是写服务端来的舒服,根据业务需求返回正确的数据即可,不像前端考虑一大推东西最费时间的,相信过几天就能上线0.1版本了,然后就是优化补坑!  
+[](https://i.imgur.com/ErcH4Vf.png)  
 
 #### 当日的积累  
 1. **SpringData JPA uuid生成策略**  
