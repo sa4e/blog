@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"   
+	  xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	  th:fragment="header">
+<head>
+	<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="layui/css/layui.css" th:href="@{/layui/css/layui.css}"/>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/blog.css" th:href="@{/css/blog.css}"/>
+</head>
+<body th:fragment="body">
+	<nav class="navbar navbar-expand-sm navbar-light" style="background-color: #FFFFCC;">
+		<div class="container">
+			<a class="navbar-brand" href="#">
+				<img src="images/logo.png" th:src="@{/images/logo.png}" width="30" height="30" alt="logo" class="d-inline-block align-top"/>
+				SPS
+			</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+	
+	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	    <ul class="navbar-nav mr-auto">
+	      <li class="nav-item active">
+	        <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+	      </li>
+	       <li class="nav-item">
+	        <a class="nav-link" href="archives.html">Archives</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="categories.html">Categories</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="#">About</a>
+	      </li>
+	    </ul>
+	    <form class="form-inline my-2 my-lg-0">
+	      <input id="indexKeyWord" class="form-control form-control-sm mr-sm-2" type="text" placeholder="Search..." aria-label="Search">
+	      <button class="btn btn-sm btn-warning my-2 my-sm-0" type="submit">Search</button>
+	    </form>
+	  </div>
+		</div>
+	</nav>	<!-- ./nav -->
+</body>
+</html>
+
+
+
+
+
+
+
+

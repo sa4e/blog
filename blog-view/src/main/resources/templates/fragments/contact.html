@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"   
+	  xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+</head>
+<body th:fragment="contact">
+	<h4>Contact</h4>
+   	<ul>
+   		<li><img src="images/gmail.png" th:src="@{/images/gmail.png}" class="blog-icon"/>&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" data-toggle="tooltip" data-placement="right" title="my email">hasaigive@gmail.com</a></li>
+   		<li><img src="images/github.png" th:src="@{/images/github.png}" class="blog-icon"/>&nbsp;&nbsp;&nbsp;<a href="https://github.com/sa4e" target="_blank" data-toggle="tooltip" data-placement="right" title="my github">Github</a></li>
+   		<li><img src="images/weixin.png" th:src="@{/images/weixin.png}" class="blog-icon"/>&nbsp;&nbsp;&nbsp;<a id="weixin" href="javascript:void(0);" data-toggle="tooltip" data-placement="right" title="点我啊">Wechat</a></li>
+		<img id="weixinewm" src="http://cos-1252109955.cosgz.myqcloud.com/QR%20Code/wxewm.jpg" alt="二维码" class="blog-ewm img-fluid"/>
+		<li><img src="images/qq.png" class="blog-icon"/>&nbsp;&nbsp;&nbsp;<a id="qq" href="javascript:void(0);" data-toggle="tooltip" data-placement="right" title="点我啊">QQ</a></li>
+		<img id="qqewm" src="http://cos-1252109955.cosgz.myqcloud.com/QR%20Code/qqewm.jpg" alt="二维码" class="blog-ewm img-fluid" />
+   		<li><img src="images/jianshu.png" th:src="@{/images/jianshu.png}" class="blog-icon"/>&nbsp;&nbsp;&nbsp;<a href="http://www.jianshu.com/users/9d41a1c5ed5b/timeline" target="_blank" data-toggle="tooltip" data-placement="right" title="简书">简书</a></li>
+   	</ul>
+
+</body>
+</html>

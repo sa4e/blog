@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+  <head>
+  	<title>赖威良/威威猫/Sa4e's Personal Site - 关注编程 | 记录生活 | sa4e.cn</title>
+  </head>
+  <body>
+  
+	<div th:insert="~{fragments/header :: header}"></div>	<!-- header -->
+			
+		<div class="blog-header">
+      <div class="container">
+        <h1 class="blog-title">Categories</h1>
+        <p class="lead blog-description">Blog's categories is here</p>
+      </div>
+    </div>	
+			
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-8">
+					<div id="cat">
+						<ul>
+							<li><a href="#Java">Java&nbsp;<sup>10</sup></a></li>				
+							<li><a href="#Spring">Spring&nbsp;<sup>10</sup></a></li>				
+							<li><a href="#Struts2">Struts2&nbsp;<sup>10</sup></a></li>				
+							<li><a href="#Hibernate">Hibernate&nbsp;<sup>10</sup></a></li>		
+					</ul>
+					</div>
+					
+					<div id="Java">
+						<h3>Java</h3>
+						<ul>
+							<li><a href="#">基于SpringBoot技术栈的个人博客</a></li>
+							<li><a href="#">基于SpringBoot技术栈的个人博客</a></li>
+							<li><a href="#">基于SpringBoot技术栈的个人博客</a></li>
+						</ul>
+					</div>
+					
+					<div id="Spring">
+						<h3>Spring</h3>
+						<ul>
+							<li><a href="#">基于SpringBoot技术栈的个人博客</a></li>
+							<li><a href="#">基于SpringBoot技术栈的个人博客</a></li>
+							<li><a href="#">基于SpringBoot技术栈的个人博客</a></li>
+						</ul>
+					</div>
+					
+					<div id="Struts2">
+						<h3>Struts2</h3>
+						<ul>
+							<li><a href="#">基于SpringBoot技术栈的个人博客</a></li>
+							<li><a href="#">基于SpringBoot技术栈的个人博客</a></li>
+							<li><a href="#">基于SpringBoot技术栈的个人博客</a></li>
+						</ul>
+					</div>
+					
+					<div id="Hibernate">
+						<h3>Hibernate</h3>
+						<ul>
+							<li><a href="#">基于SpringBoot技术栈的个人博客</a></li>
+							<li><a href="#">基于SpringBoot技术栈的个人博客</a></li>
+							<li><a href="#">基于SpringBoot技术栈的个人博客</a></li>
+						</ul>
+					</div>
+					
+				</div>
+				
+				<div class="col-sm-3 ml-sm-auto blog-sidebar">
+        	
+          <div id="about" class="sidebar-module sidebar-module-inset" th:insert="~{fragments/about :: about}">
+            
+          </div>	<!-- About -->
+          
+          <div id="contant" class="sidebar-module" th:insert="~{fragments/contact :: contact}">
+          	
+          </div>	<!-- Contant -->
+          
+          <div id="link" class="sidebar-module" th:insert="~{fragments/link :: link}">
+           
+          </div>	<!-- Link -->
+          
+        </div><!-- /.blog-sidebar -->
+        
+			</div>
+		</div>
+    
+		
+	<div th:insert="~{fragments/footer :: footer}"></div>	<!-- footer -->
+   	<script>
+   		$(function(){
+   			$('.col-sm-8 ul > li').addClass('blog-cat');
+   		});
+   	</script>
+  </body>
+ 	 
+</html>

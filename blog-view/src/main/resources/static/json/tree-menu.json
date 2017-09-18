@@ -1,0 +1,36 @@
+[
+	{
+	 "id":1,
+	 "name":"文章管理",
+	 "children":[
+	  {"id":11,"name":"发布文章","href":"blog-post"},
+	  {"id":12,"name":"文章列表"},
+	  {"id":13,"name":"分类管理","children":[{"id":131,"name":"分类列表","href":"categories"}]},
+	  {"id":14,"name":"标签管理","children":[{"id":141,"name":"标签列表","href":"tags"}]}
+	],
+	"spread":true
+	},
+	{
+	 "id":2,
+	 "name":"用户管理",
+	 "children":[
+	  {"id":21,"name":"用户列表"}
+	 ]
+	},
+	{
+	 "id":3,
+	 "name":"访问管理",
+	 "children":[
+	  {"id":31,"name":"访问记录"}
+	 ]
+	},
+	{
+	 "id":4,
+	 "name":"系统管理",
+	 "children":[
+	  {"id":41,"name":"About"},
+	  {"id":42,"name":"Contant"},
+	  {"id":43,"name":"Elsewhere"}
+	 ]
+	}
+]

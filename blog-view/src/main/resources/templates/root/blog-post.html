@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head>
+	<title>博客后台</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" type="text/css" href="../css/jquery.tagsinput.min.css" th:href="@{/css/jquery.tagsinput.min.css}"/>
+	<link rel="stylesheet" type="text/css" href="../layui/css/layui.css" th:href="@{/layui/css/layui.css}"/>
+</head>
+<body style="margin: 10px 20px;">
+<fieldset class="layui-elem-field layui-field-title">
+  <legend>发布文章</legend>
+</fieldset>
+
+<form class="layui-form" th:action="@{/root/publish}" th:method="post">
+	<div class="layui-form-item">
+		<label class="layui-form-label">文章标题</label>
+		<div class="layui-input-block">
+			<input name="title" type="text" lay-verify="required|title" class="layui-input" placeholder="请输入标题:" />
+		</div>
+	</div>
+	<div class="layui-form-item layui-form-text">
+		<label class="layui-form-label">文章摘要</label>
+		<div class="layui-input-block">
+			<textarea name="summary" lay-verify="required" class="layui-textarea" placeholder="请输入摘要:"></textarea>
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label">分类</label>
+		<div class="layui-input-inline">
+			<select id="category" name="category.id">
+				<option value="">请选择分类</option>
+				<!-- 
+					<option>Java</option>
+				<option>dad</option>
+				 -->
+			</select>
+		</div>
+	</div>
+	
+	<div class="layui-form-item">
+		<label class="layui-form-label">标签</label>
+		<div class="layui-input-inline">
+			<input name="tagsGroup" id="tags"/>
+		</div>
+	</div>
+	
+	<div class="layui-form-item" pane="">
+	    <label class="layui-form-label">是否显示</label>
+		    <div class="layui-input-block">
+		      <input name="display" value="1" checked="" lay-skin="switch" lay-filter="switchTest" lay-text="ON|OFF" type="checkbox">
+		    </div>
+	  </div>
+	  <div class="layui-form-item" pane="">
+	    <label class="layui-form-label">是否置顶</label>
+		    <div class="layui-input-block">
+		      <input name="sticky" value="1" lay-skin="switch" lay-text="ON|OFF" type="checkbox">
+		    </div>
+	  </div>
+	<div class="layui-form-item">
+		<div class="layui-inline">
+			<label class="layui-form-label">日期选择</label>
+			<div class="layui-input-block">
+				<input name="createTime" id="date" lay-verify="required|datetime" autocomplete="off" class="layui-input" type="text"/>
+			</div>
+		</div>
+	</div>
+	<div class="layui-form-item layui-form-text">
+	    <label class="layui-form-label">编辑器</label>
+	    <div class="layui-input-block">
+	    <textarea name="content" class="layui-textarea layui-hide" lay-verify="content" id="editor"></textarea>
+    </div>
+  </div>
+  <input type="hidden" name="user.uid" th:value="${session.user.uid}"/>
+  <div class="layui-form-item">
+    <div class="layui-input-block">
+      <button class="layui-btn" lay-submit="" lay-filter="post">发布</button>
+      <button class="layui-btn layui-btn-primary" type="reset">重置</button>
+    </div>
+  </div>
+</form>
+<script src="http://apps.bdimg.com/libs/jquery/1.11.3/jquery.min.js" type="text/javascript"></script>
+<script src="../layui/layui.js" type="text/javascript" th:src="@{/layui/layui.js}"></script>
+<script src="../js/jquery.tagsinput.min.js" type="text/javascript" th:src="@{/js/jquery.tagsinput.min.js}"></script>
+<script src="../js/root/blog.post.js" type="text/javascript" th:src="@{/js/root/blog.post.js}"></script>
+</body>
+</html>

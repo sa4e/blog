@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+  <head>
+  <title>赖威良/威威猫/Sa4e's Personal Site - 关注编程 | 记录生活 | sa4e.cn</title>
+  </head>
+  <body>
+  	
+  	<div th:insert="~{fragments/header :: header}"></div>	<!-- header -->
+				
+		<div class="blog-header">
+      <div class="container">
+        <h1 class="blog-title">Archives</h1>
+        <p class="lead blog-description">All article is here</p>
+      </div>
+    </div>	
+			
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-8">
+					<div class="">
+						<h3>2017</h3>
+						<div class="blog-timing">
+							<div class="blog-time">
+								8-19
+							</div>
+							<a href="#">基于SpringBoot技术栈的个人博客</a>
+						</div>
+						
+						<div class="blog-timing">
+							<div class="blog-time">
+								8-19
+							</div>
+							<a href="#">基于SpringBoot技术栈的个人博客bbbbbbbbbbbbbbbbbbbbbbb</a>
+						</div>
+						
+						<div class="blog-timing">
+							<div class="blog-time">
+								8-19
+							</div>
+							<a href="#">基于SpringBoot技术栈的个人博客aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</a>
+						</div>
+						
+						<div class="blog-timing">
+							<div class="blog-time">
+								8-19
+							</div>
+							<a href="#">基于SpringBoot技术栈的个人博客</a>
+						</div>
+						
+						<div class="blog-timing">
+							<div class="blog-time">
+								8-19
+							</div>
+							<a href="#">基于SpringBoot技术栈的个人博客ccccccccccccccccccccccccccc</a>
+						</div>
+						
+						<div class="blog-timing">
+							<div class="blog-time">
+								8-19
+							</div>
+							<a href="#">基于SpringBoot技术栈的个人博客</a>
+						</div>
+						
+						<div class="blog-timing">
+							<div class="blog-time">
+								8-19
+							</div>
+							<a href="#">基于SpringBoot技术栈的个人博客</a>
+						</div>
+						
+					</div>
+				</div>
+				
+				<div class="col-sm-3 ml-sm-auto blog-sidebar">
+        	
+          <div id="about" class="sidebar-module sidebar-module-inset" th:insert="~{fragments/about :: about}">
+            
+          </div>	<!-- About -->
+          
+          <div id="contant" class="sidebar-module" th:insert="~{fragments/contact :: contact}">
+          	
+          </div>	<!-- Contant -->
+          
+          <div id="link" class="sidebar-module" th:insert="~{fragments/link :: link}">
+           
+          </div>	<!-- Link -->
+          
+        </div><!-- /.blog-sidebar -->
+			</div>
+		</div>
+    
+		<div th:insert="~{fragments/footer :: footer}"></div>	<!-- footer -->
+		
+  </body>
+ 	 
+</html>
