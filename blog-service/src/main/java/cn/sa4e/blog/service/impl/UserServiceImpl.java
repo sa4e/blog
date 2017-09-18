@@ -3,9 +3,8 @@ package cn.sa4e.blog.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.alibaba.dubbo.config.annotation.Service;
 
 import cn.sa4e.blog.model.User;
 import cn.sa4e.blog.repository.UserRepository;
@@ -21,7 +20,7 @@ import cn.sa4e.blog.utils.MD5Utils;
  *并且强制使用cglib动态代理.可解决此问题
  *发布服务格式如下:
  */
-@Service(interfaceName = "cn.sa4e.blog.service.IUserService",version = "0.0.1",timeout = 5000)
+@Service
 public class UserServiceImpl implements IUserService{
 	
 	
@@ -36,15 +35,18 @@ public class UserServiceImpl implements IUserService{
 
 	@Override
 	public List<User> getAllUser() throws Exception {
-		List<User> userList = userRepository.findAll();
-		return userList;
+		return userRepository.findAll();
 	}
 
 	@Override
 	public User login(String username, String password) throws Exception {
 		password = MD5Utils.md5(password);
-		User user = userRepository.findByUsernameAndPassword(username, password);
-		return user;
+		return userRepository.findByUsernameAndPassword(username, password);
+	}
+
+	@Override
+	public User findOne(String uid) {
+		return userRepository.findOne(uid);
 	}
 
 }

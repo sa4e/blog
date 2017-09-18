@@ -11,7 +11,7 @@ import cn.sa4e.blog.model.Blog;
 */
 public interface IBlogService {
 	
-	void publish(Blog blog);
-	List<Blog> getBlogList();
-	Blog getContent(Long id);
+	void insert(Blog blog);
+	List<Blog> findAll();
+	Blog findById(Long id);
 }

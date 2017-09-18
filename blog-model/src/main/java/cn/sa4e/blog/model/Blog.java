@@ -23,6 +23,7 @@ import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 /**
  * Blog实体
@@ -32,8 +33,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 public class Blog implements Serializable{
 
-	private static final long serialVersionUID = 9203315284550876241L;
-	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4368769222796651081L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id; 
@@ -44,9 +48,10 @@ public class Blog implements Serializable{
 	@Column(nullable = false)
 	private String summary;		//文章摘要
 	
-	@Column(nullable = false)	//不能为空
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Column(nullable = false,columnDefinition = "datetime")	//不能为空
+	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern = "yyyy/MM/dd")
 	private Date createTime;	//文章创建时间
 	
 	@Lob						//大对象，映射 MySQL 的 Long Text 类型
@@ -68,11 +73,11 @@ public class Blog implements Serializable{
 	 * cascade: 级联操作
 	 */
 	//映射多对一关系
-	@ManyToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH},optional = false)
+	@ManyToOne(optional = false)
 	@JoinColumn(name = "cid")	//设置在blog表中的关联字段(外键)
 	private Category category;
 	
-	@ManyToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH},optional = false)
+	@ManyToOne(optional = false)
 	@JoinColumn(name = "uid")
 	private User user;
 	
@@ -95,8 +100,9 @@ public class Blog implements Serializable{
 		
 	}
 
-	public Blog(String title, String summary, Date createTime, String content, Integer display, Integer sticky,
+	public Blog(Long id, String title, String summary, Date createTime, String content, Integer display, Integer sticky,
 			Integer readSize, Category category, User user, Set<Tag> tags) {
+		this.id = id;
 		this.title = title;
 		this.summary = summary;
 		this.createTime = createTime;

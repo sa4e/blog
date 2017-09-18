@@ -12,7 +12,7 @@ import cn.sa4e.blog.model.Tag;
 public interface ITagService {
 	
 	void insert(Tag tag);
-	Tag findByName(String name);
+	Tag findOne(String name);
 	List<Tag> findAll();
 	void deleteByName(String name);
 	

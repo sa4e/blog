@@ -13,6 +13,10 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.CreationTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * 标签实体
  * @author Sa4e e-mail:hasaigive@gmail.com
@@ -21,16 +25,21 @@ import javax.persistence.TemporalType;
 @Entity
 public class Tag implements Serializable{
 
-	private static final long serialVersionUID = -7408336002369140395L;
-	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8063712562622796964L;
+
 	@Id
 	private String name;	//标签名为主键
 	
 	@Column(nullable = false,columnDefinition = "tinyint(1)")
 	private Integer id;		//标签的id值,1-8随机分配,用于样式展示
 	
-	@Column(nullable = false)
-	@Temporal(TemporalType.DATE)
+	@Column(nullable = false,columnDefinition = "datetime")
+	@Temporal(TemporalType.TIMESTAMP)
+	@CreationTimestamp
+	//TODO 解决时间相差8小时
 	private Date createTime;	//创建时间
 	
 	/*
@@ -39,13 +48,15 @@ public class Tag implements Serializable{
 	* 属性的名称。表示由对方主体的哪个属性来完成映射关系。
 	*/
 	@ManyToMany(cascade = CascadeType.REFRESH,mappedBy = "tags")
+	@JsonIgnore
 	private Set<Blog> blogs = new HashSet<>();
 	
-	protected Tag() {
+	public Tag() {
 		
 	}
 	
-	public Tag(Integer id, Date createTime, Set<Blog> blogs) {
+	public Tag(String name, Integer id, Date createTime, Set<Blog> blogs) {
+		this.name = name;
 		this.id = id;
 		this.createTime = createTime;
 		this.blogs = blogs;

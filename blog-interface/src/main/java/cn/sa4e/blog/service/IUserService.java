@@ -12,6 +12,7 @@ import cn.sa4e.blog.model.User;
 public interface IUserService {
 	
 	void insert(User user) throws Exception;
+	User findOne(String uid);
 	User login(String username,String password) throws Exception;
 	List<User> getAllUser() throws Exception;
 }

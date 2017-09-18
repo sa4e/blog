@@ -1,13 +1,11 @@
 package cn.sa4e.blog.service.impl;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.alibaba.dubbo.config.annotation.Service;
 
 import cn.sa4e.blog.model.Tag;
 import cn.sa4e.blog.repository.TagRepository;
@@ -18,7 +16,7 @@ import cn.sa4e.blog.service.ITagService;
  * @author Sa4e e-mail:hasaigive@gmail.com
  * @date 2017年9月14日 下午6:05:43
  */
-@Service(interfaceName = "cn.sa4e.blog.service.ITagService",version = "0.0.1",timeout = 5000)
+@Service
 public class TagServiceImpl implements ITagService {
 	
 	@Autowired
@@ -27,16 +25,14 @@ public class TagServiceImpl implements ITagService {
 	@Override
 	@Transactional
 	public void insert(Tag tag) {
-		int random = new Random().nextInt(9);
-		tag.setId(random);
-		tag.setCreateTime(new Date());
+		tag.setId(new Random().nextInt(9));		//随机生成1-8
+	/*	tag.setCreateTime(new Timestamp(new Date().getTime()));*/
 		tagRepository.save(tag);
 	}
 
 	@Override
-	public Tag findByName(String name) {
-		Tag tag = tagRepository.findOne(name);
-		return tag;
+	public Tag findOne(String name) {
+		return tagRepository.findOne(name);
 	}
 
 	@Override

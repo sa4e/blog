@@ -14,6 +14,9 @@ import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
 /**
  * User实体
  * @author Sa4e e-mail:hasaigive@gmail.com
@@ -22,7 +25,10 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 public class User implements Serializable{
 	
-private static final long serialVersionUID = -3822774101700955700L;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3755620345556154260L;
 
 	//uuid生成策略
 	@Id
@@ -36,10 +42,11 @@ private static final long serialVersionUID = -3822774101700955700L;
 	@Column(nullable = false)
 	private String password;
 	
-	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "user",cascade = CascadeType.REFRESH,fetch = FetchType.LAZY)
+	@JsonIgnore
 	private Set<Blog> blogs = new HashSet<>();
 	
-	protected User() {
+	public User() {
 	}
 
 	public User(String username, String password, Set<Blog> blogs) {
@@ -79,5 +86,5 @@ private static final long serialVersionUID = -3822774101700955700L;
 	public void setBlogs(Set<Blog> blogs) {
 		this.blogs = blogs;
 	}
-	
+
 }

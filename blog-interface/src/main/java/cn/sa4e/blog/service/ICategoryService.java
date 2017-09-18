@@ -12,6 +12,7 @@ import cn.sa4e.blog.model.Category;
 public interface ICategoryService {
 	
 	void insert(Category category);
+	Category findOne(Long id);
 	List<Category> findAll();
 	
 }

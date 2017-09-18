@@ -16,6 +16,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.CreationTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 /**
  * 分类实体
@@ -25,8 +30,11 @@ import javax.persistence.TemporalType;
 @Entity
 public class Category implements Serializable{
 
-	private static final long serialVersionUID = -3624321545226325849L;
-	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4607308137144116367L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -34,8 +42,10 @@ public class Category implements Serializable{
 	@Column(nullable = false)
 	private String name;			//分类名称
 	
-	@Column(nullable = false)
+	@Column(nullable = false,columnDefinition = "datetime")
 	@Temporal(TemporalType.DATE)
+	@CreationTimestamp
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date createTime;		//分类创建时间
 	
 	/*
@@ -44,13 +54,15 @@ public class Category implements Serializable{
 	 * cascade: 级联操作
 	 */
 	//映射一对多关系
-	@OneToMany(mappedBy = "category",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "category",cascade = CascadeType.REFRESH,fetch = FetchType.LAZY)
+	@JsonIgnore
 	private Set<Blog> blogs = new HashSet<>();
 	
-	protected Category() {	//jpa规范
+	public Category() {	
 	}
 
-	public Category(String name, Date createTime, Set<Blog> blogs) {
+	public Category(Long id, String name, Date createTime, Set<Blog> blogs) {
+		this.id = id;
 		this.name = name;
 		this.createTime = createTime;
 		this.blogs = blogs;
@@ -87,5 +99,5 @@ public class Category implements Serializable{
 	public void setBlogs(Set<Blog> blogs) {
 		this.blogs = blogs;
 	}
-	
+
 }
