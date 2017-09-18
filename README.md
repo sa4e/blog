@@ -1,6 +1,6 @@
 # blog 一个基于SpringBoot技术栈的个人博客--->服务端  
 
-主要技术栈:**SpringBoot** + Spring Data JPA + SpringMVC + Thymeleaf + Druid + Dubbo + Redis + Mysql + Tomcat  
+主要技术栈:**SpringBoot** + Spring Data JPA + SpringMVC + Thymeleaf + Druid + Redis + Mysql + Tomcat  
 **此博客系统采用的是前后端分离,前端项目地址**:[https://github.com/sa4e/blog-view](https://github.com/sa4e/blog-view "blog-view")
 
 # 2017/8/14 星期一 下午 9:11:36 
@@ -34,7 +34,7 @@
 ![图片](http://i.imgur.com/8d2gpzV.png)  
 # 2017/9/14 星期四 下午 11:54:55 
 12号才开始编写的服务端代码,使用springboot来开发进度是真的猛,核心的功能代码已经编写完成了,还是写服务端来的舒服,根据业务需求返回正确的数据即可,不像前端交互要考虑一大推东西最费时间的,相信过几天就能上线0.1版本了,然后就是优化补坑!  
-![](https://i.imgur.com/ErcH4Vf.png)  
+![](https://i.imgur.com/S0q3P6d.png)  
 
 #### 当日的积累  
 1. **SpringData JPA uuid生成策略**  
