@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head>
+<title th:text="${blog.title}">content</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="layui/css/layui.css" th:href="@{/layui/css/layui.css}"/>
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="css/blog-content.css" th:href="@{/css/blog-content.css}"/>
+</head>
+<body>
+	<div th:insert="~{fragments/header :: body}"></div>	<!-- body -->
+	
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12" id="content">
+			
+		</div>	<!-- ./col-sm-12 -->	
+	
+	<div class="col-sm-12">
+		<div class="blog-tags">
+			<em>分类:</em>&nbsp;&nbsp;&nbsp;<a href="#">[[${blog.category.name}]]</a>
+		</div>
+	</div>
+	
+	<div class="col-sm-12">
+		<div id="tags" class="blog-tags">
+			<em>标签:</em>
+			<span th:each="tag : ${blog.tags}">
+				<a href="#" th:id="${tag.id}" th:text="${tag.name}"></a>
+			</span>
+		</div>
+	</div>
+	
+	</div>  <!-- ./row -->
+	
+</div>
+<div th:insert="~{fragments/footer :: footer}"></div>	<!-- footer -->
+
+    <script th:inline="javascript">
+    	$(function(){
+    		$('#content img').addClass('img-fluid img-thumbnail');
+    		
+    		$('#content').html([[${blog.content}]]);
+    	});
+    </script>
+</body>
+</html>
