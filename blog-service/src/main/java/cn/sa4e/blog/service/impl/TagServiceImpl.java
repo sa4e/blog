@@ -25,7 +25,7 @@ public class TagServiceImpl implements ITagService {
 	@Override
 	@Transactional
 	public void insert(Tag tag) {
-		tag.setId(new Random().nextInt(9));		//随机生成1-8
+		tag.setId(new Random().nextInt(8));		//随机生成0-7
 	/*	tag.setCreateTime(new Timestamp(new Date().getTime()));*/
 		tagRepository.save(tag);
 	}

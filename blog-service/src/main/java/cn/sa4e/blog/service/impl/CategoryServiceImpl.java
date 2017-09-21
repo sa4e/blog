@@ -32,7 +32,7 @@ public class CategoryServiceImpl implements ICategoryService {
 
 	@Override
 	public List<Category> findAll() {
-		return categoryRepository.findAll(new Sort(Direction.DESC, "id"));
+		return categoryRepository.findAll(new Sort(Direction.ASC, "name"));
 	}
 
 	@Override

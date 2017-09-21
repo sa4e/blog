@@ -11,7 +11,11 @@ import cn.sa4e.blog.model.Blog;
 */
 public interface IBlogService {
 	
-	void insert(Blog blog);
+	void insert(Blog blog,String tagsGroup);
+	int updateReadSize(Blog blog);
 	List<Blog> findAll();
+	List<Blog> findAllOrderByCreateTimeAsc();
+	List<Blog> findByCid(Long cid);
 	Blog findById(Long id);
+	
 }

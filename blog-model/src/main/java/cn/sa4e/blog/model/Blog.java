@@ -24,6 +24,7 @@ import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * Blog实体
@@ -46,6 +47,7 @@ public class Blog implements Serializable{
 	private String title;		//文章标题
 	
 	@Column(nullable = false)
+	@JsonIgnore
 	private String summary;		//文章摘要
 	
 	@Column(nullable = false,columnDefinition = "datetime")	//不能为空
@@ -57,6 +59,7 @@ public class Blog implements Serializable{
 	@Lob						//大对象，映射 MySQL 的 Long Text 类型
 	@Column(nullable = false)
 	@Basic(fetch = FetchType.LAZY)	//懒加载
+	@JsonIgnore
 	private String content;		//文章内容
 	
 	@Column(nullable = false,columnDefinition = "tinyint(1)")
@@ -79,6 +82,7 @@ public class Blog implements Serializable{
 	
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "uid")
+	@JsonIgnore
 	private User user;
 	
 	/*
@@ -94,9 +98,10 @@ public class Blog implements Serializable{
 	@JoinTable(name = "blog_tag",
 			   joinColumns= {@JoinColumn(name = "blogId",referencedColumnName = "id")},
 			   inverseJoinColumns= {@JoinColumn(name = "tagId",referencedColumnName = "name")})
+	@JsonIgnore
 	private Set<Tag> tags = new HashSet<>();
 	
-	protected Blog() {			//jpa规范
+	public Blog() {			//jpa规范
 		
 	}
 
