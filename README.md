@@ -1,6 +1,6 @@
 # blog 一个基于SpringBoot技术栈的个人博客--->服务端  
 
-主要技术栈:**SpringBoot** + Spring Data JPA + SpringMVC + Thymeleaf + Druid + Redis + Mysql + Tomcat  
+主要技术栈:**SpringBoot** + Spring Data JPA + SpringMVC + Thymeleaf + Elasticsearch + Druid + Redis + Mysql + Tomcat  
 **此博客系统采用的是前后端分离,前端项目地址**:[https://github.com/sa4e/blog-view](https://github.com/sa4e/blog-view "blog-view")
 
 # 2017/8/14 星期一 下午 9:11:36 
