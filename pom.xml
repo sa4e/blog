@@ -81,6 +81,12 @@
 				<version>${mysql.version}</version>
 				<scope>runtime</scope>
 			</dependency>
+			<!-- 腾讯云COS sdk -->
+			<dependency>
+				<groupId>com.qcloud</groupId>
+				<artifactId>cos_api</artifactId>
+				<version>4.4</version>
+			</dependency>
 		
 		</dependencies>
 	</dependencyManagement>

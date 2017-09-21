@@ -1,26 +1,23 @@
 package cn.sa4e.blog.controller;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.io.IOException;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.qcloud.cos.COSClient;
+import com.qcloud.cos.request.UploadFileRequest;
+
+import cn.sa4e.blog.cos.COSAutoClient;
 import cn.sa4e.blog.model.Blog;
-import cn.sa4e.blog.model.Category;
-import cn.sa4e.blog.model.Tag;
-import cn.sa4e.blog.model.User;
 import cn.sa4e.blog.service.IBlogService;
-import cn.sa4e.blog.service.ICategoryService;
-import cn.sa4e.blog.service.ITagService;
-import cn.sa4e.blog.service.IUserService;
 
 /**
 * Blog控制器
@@ -32,15 +29,13 @@ public class BlogController {
 	
 	@Autowired
 	private IBlogService blogService;
-	
 	@Autowired
-	private IUserService userService;
+	private COSAutoClient cosAutoClient;
 	
-	@Autowired
-	private ICategoryService categoryService;
-	
-	@Autowired
-	private ITagService tagService;
+	@Value("${cos.bucketName}")
+	private String bucketName;
+	@Value("${cos.dirName}")
+	private String dirName;
 	
 	/**
 	 * 发布博客
@@ -50,41 +45,31 @@ public class BlogController {
 	 */
 	@PostMapping("/root/publish")
 	public String publishBlog(Blog blog,@RequestParam("tagsGroup") String tagsGroup
-							 ,BindingResult bindingResult) throws Exception{
+							 ,BindingResult bindingResult) {
 		//TODO 发布博客完善,异常处理
 		
-		//关联用户
-		User user = userService.findOne(blog.getUser().getUid());
-		blog.setUser(user);
-		
-		//关联分类
-		Category category = categoryService.findOne(blog.getCategory().getId());
-		blog.setCategory(category);
-		
-		//关联标签
-		String[] splitTagName = tagsGroup.split(",");
-		Set<Tag> tagSet = new HashSet<>();
-		for (String tagName : splitTagName) {
-			Tag tag = tagService.findOne(tagName);
-			tagSet.add(tag);
-		}
-		blog.setTags(tagSet);
-		
-		blogService.insert(blog);
+		blogService.insert(blog,tagsGroup);
 		return "root/index";
 	}
 	
-	
-	@GetMapping("/blogs")
-	public ModelAndView getBlogList() throws Exception{
-		List<Blog> blogList = blogService.findAll();
-		return new ModelAndView("index", "blogList", blogList);
-	}
-	
-	@GetMapping("/content/{id}")
-	public ModelAndView getContent(@PathVariable("id") Long id) throws Exception{
-		Blog content = blogService.findById(id);
-		return new ModelAndView("content", "blog", content);
+	/**
+	 * 富文本编辑器图片上传
+	 * @param file
+	 * @return
+	 * @throws IOException
+	 */
+	@PostMapping("/root/image")
+	@ResponseBody
+	public String uploadImg(@RequestParam("file") MultipartFile file) throws IOException {
+		//TODO 富文本图片上传接口,异常处理
+		COSClient cosClient = cosAutoClient.getCosClient();
+		
+		String originalFilename = file.getOriginalFilename();
+		UploadFileRequest uploadFileRequest = new UploadFileRequest(bucketName
+				, dirName + originalFilename + UUID.randomUUID().toString()
+				, file.getBytes());
+		return cosClient.uploadFile(uploadFileRequest);
+		
 	}
 	
 }

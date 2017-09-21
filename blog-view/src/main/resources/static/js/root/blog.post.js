@@ -13,6 +13,12 @@ laydate.render({
 });
   
 //创建一个编辑器
+layedit.set({
+	uploadImage: {
+		url: '/root/image',
+		type: 'post'
+	}
+});
 var editIndex = layedit.build('editor');
 
 //自定义验证规则

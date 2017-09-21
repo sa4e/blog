@@ -73,7 +73,7 @@
 	    <textarea name="content" class="layui-textarea layui-hide" lay-verify="content" id="editor"></textarea>
     </div>
   </div>
-  <input type="hidden" name="user.uid" th:value="${session.user.uid}"/>
+  <input type="hidden" name="user.uid" th:if="${session.user != null}" th:value="${session.user.uid}"/>
   <div class="layui-form-item">
     <div class="layui-input-block">
       <button class="layui-btn" lay-submit="" lay-filter="post">发布</button>

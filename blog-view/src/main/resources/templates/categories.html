@@ -4,6 +4,7 @@
       xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
   <head>
   	<title>赖威良/威威猫/Sa4e's Personal Site - 关注编程 | 记录生活 | sa4e.cn</title>
+  	
   </head>
   <body>
   
@@ -20,49 +21,24 @@
 			<div class="row">
 				<div class="col-sm-8">
 					<div id="cat">
-						<ul>
-							<li><a href="#Java">Java&nbsp;<sup>10</sup></a></li>				
-							<li><a href="#Spring">Spring&nbsp;<sup>10</sup></a></li>				
-							<li><a href="#Struts2">Struts2&nbsp;<sup>10</sup></a></li>				
-							<li><a href="#Hibernate">Hibernate&nbsp;<sup>10</sup></a></li>		
-					</ul>
-					</div>
-					
-					<div id="Java">
-						<h3>Java</h3>
-						<ul>
-							<li><a href="#">基于SpringBoot技术栈的个人博客</a></li>
-							<li><a href="#">基于SpringBoot技术栈的个人博客</a></li>
-							<li><a href="#">基于SpringBoot技术栈的个人博客</a></li>
+						<ul class="blog-cat-mar">
+							<li th:each="cat : ${cats}">
+								<a href="javascript:void(0);" th:id="${cat.id}">
+									[[${cat.name}]]&nbsp;
+									<sup>[[${#sets.size(cat.blogs)}]]</sup>
+								</a>
+							</li>				
 						</ul>
-					</div>
+					</div>	<!-- catList -->
 					
-					<div id="Spring">
-						<h3>Spring</h3>
-						<ul>
-							<li><a href="#">基于SpringBoot技术栈的个人博客</a></li>
-							<li><a href="#">基于SpringBoot技术栈的个人博客</a></li>
-							<li><a href="#">基于SpringBoot技术栈的个人博客</a></li>
-						</ul>
-					</div>
+					<hr/>
 					
-					<div id="Struts2">
-						<h3>Struts2</h3>
+					<div id="catDiv">
+						<h4></h4>
 						<ul>
-							<li><a href="#">基于SpringBoot技术栈的个人博客</a></li>
-							<li><a href="#">基于SpringBoot技术栈的个人博客</a></li>
-							<li><a href="#">基于SpringBoot技术栈的个人博客</a></li>
+							
 						</ul>
-					</div>
-					
-					<div id="Hibernate">
-						<h3>Hibernate</h3>
-						<ul>
-							<li><a href="#">基于SpringBoot技术栈的个人博客</a></li>
-							<li><a href="#">基于SpringBoot技术栈的个人博客</a></li>
-							<li><a href="#">基于SpringBoot技术栈的个人博客</a></li>
-						</ul>
-					</div>
+					</div>	<!-- catContent -->
 					
 				</div>
 				
@@ -89,6 +65,23 @@
 	<div th:insert="~{fragments/footer :: footer}"></div>	<!-- footer -->
    	<script>
    		$(function(){
+   			$('.blog-cat-mar a').click(function(){
+   				var url = '/categories/';
+   				var cid = $(this).attr('id');
+   				var html = "";
+   				var catName = "";
+   				$.get(url+cid,function(data){
+   					$.each(data.data,function(idx,obj){
+   						if("" == catName) {
+	   						catName = obj.category.name;
+   						}
+   						html += "<li class='blog-cat'><span style='margin-right:1rem;'>"+ obj.createTime +"</span><a target='_blank' href='/articles/"+ obj.id +"'>"+ obj.title +"</a></li>"
+   					});
+   					$('#catDiv > h4').html(catName);
+   					$('#catDiv > ul').html(html);
+   				},'json');
+   			});
+   			
    			$('.col-sm-8 ul > li').addClass('blog-cat');
    		});
    	</script>

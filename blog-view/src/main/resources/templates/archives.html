@@ -21,53 +21,11 @@
 				<div class="col-sm-8">
 					<div class="">
 						<h3>2017</h3>
-						<div class="blog-timing">
+						<div class="blog-timing" th:each="arc : ${arcs}">
 							<div class="blog-time">
-								8-19
+								[[${#dates.format(arc.createTime,'MM-dd')}]]
 							</div>
-							<a href="#">基于SpringBoot技术栈的个人博客</a>
-						</div>
-						
-						<div class="blog-timing">
-							<div class="blog-time">
-								8-19
-							</div>
-							<a href="#">基于SpringBoot技术栈的个人博客bbbbbbbbbbbbbbbbbbbbbbb</a>
-						</div>
-						
-						<div class="blog-timing">
-							<div class="blog-time">
-								8-19
-							</div>
-							<a href="#">基于SpringBoot技术栈的个人博客aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</a>
-						</div>
-						
-						<div class="blog-timing">
-							<div class="blog-time">
-								8-19
-							</div>
-							<a href="#">基于SpringBoot技术栈的个人博客</a>
-						</div>
-						
-						<div class="blog-timing">
-							<div class="blog-time">
-								8-19
-							</div>
-							<a href="#">基于SpringBoot技术栈的个人博客ccccccccccccccccccccccccccc</a>
-						</div>
-						
-						<div class="blog-timing">
-							<div class="blog-time">
-								8-19
-							</div>
-							<a href="#">基于SpringBoot技术栈的个人博客</a>
-						</div>
-						
-						<div class="blog-timing">
-							<div class="blog-time">
-								8-19
-							</div>
-							<a href="#">基于SpringBoot技术栈的个人博客</a>
+							<a href="#" target="_blank" th:href="@{/articles/{id}(id=${arc.id})}" th:text="${arc.title}">基于SpringBoot技术栈的个人博客</a>
 						</div>
 						
 					</div>

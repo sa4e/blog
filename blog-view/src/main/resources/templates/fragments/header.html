@@ -25,17 +25,20 @@
 	
 	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 	    <ul class="navbar-nav mr-auto">
-	      <li class="nav-item active">
-	        <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+	      <li class="nav-item">
+	        <a class="nav-link" href="/" th:href="@{/}">Home<span class="sr-only">(current)</span></a>
 	      </li>
 	       <li class="nav-item">
-	        <a class="nav-link" href="archives.html">Archives</a>
+	        <a class="nav-link" href="archives.html" th:href="@{/archives}">Archives</a>
 	      </li>
 	      <li class="nav-item">
-	        <a class="nav-link" href="categories.html">Categories</a>
+	        <a class="nav-link" href="categories.html" th:href="@{/categories}">Categories</a>
 	      </li>
 	      <li class="nav-item">
-	        <a class="nav-link" href="#">About</a>
+	        <a class="nav-link" href="about.html" th:href="@{/about}">About</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="resume.html" th:href="@{/resume}">Resume</a>
 	      </li>
 	    </ul>
 	    <form class="form-inline my-2 my-lg-0">

@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
 import cn.sa4e.blog.model.User;
 import cn.sa4e.blog.service.IUserService;
@@ -53,18 +53,14 @@ public class RootController {
 	 * @throws Exception
 	 */
 	@PostMapping("/login")
-	public String login(@RequestParam(name = "username",required = true) String username,
-						@RequestParam(name = "password",required = true) String password,
-						ModelMap modelMap) throws Exception{
+	public ModelAndView login(User user) throws Exception{
 		//TODO 登录完善,异常处理
-		User user = userService.login(username, password);
-		if(user == null) {
-			modelMap.addAttribute("msg", "User name or password error!");
-			return "root/login";
+		User u = userService.login(user.getUsername(), user.getPassword());
+		if(u == null) {
+			return new ModelAndView("root/login", "msg", "User name or password error!");
 		}
 		
-		modelMap.addAttribute("user", user);
-		return "root/index";
+		return new ModelAndView("root/index", "user", u);
 	}
 	
 }

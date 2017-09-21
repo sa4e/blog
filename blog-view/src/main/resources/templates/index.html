@@ -20,90 +20,26 @@
       <div class="row">
 
         <div class="col-sm-8 blog-main">
+		
+			<div id="tags" class="blog-post">
+			
+				<span th:each="tag : ${tags}">
+					<a href="#" th:id="${tag.id}" th:text="${tag.name}"></a>
+				</span>
+				
+			</div>	<!-- tags -->
 					
-					<div id="tags" class="blog-post">
-					
-						<span><a href="#" id="4">SpringMVC</a></span>
-						<span><a href="#" id="5">Springboot</a></span>
-						<span><a href="#" id="1">SpringMVC</a></span>
-						<span><a href="#" id="2">Dubbo</a></span>
-						<span><a href="#" id="8">Springboot</a></span>
-						<span><a href="#" id="6">Dubbo</a></span>
-						<span><a href="#" id="4">Springboot</a></span>
-						<span><a href="#" id="6">Dubbo</a></span>
-						<span><a href="#" id="2">SpringMVC</a></span>
-						<span><a href="#" id="3">SpringMVC</a></span>
-						<span><a href="#" id="8">Dubbo</a></span>
-						<span><a href="#" id="4">SpringMVC</a></span>
-						<span><a href="#" id="1">SpringMVC</a></span>
-						<span><a href="#" id="5">Springboot</a></span>
-						<span><a href="#" id="6">Dubbo</a></span>
-						<span><a href="#" id="8">Springboot</a></span>
-						<span><a href="#" id="2">Springboot</a></span>
-						<span><a href="#" id="3">SpringMVC</a></span>
-						<span><a href="#" id="4">Springboot</a></span>
-						<span><a href="#" id="2">Dubbo</a></span>
-						<span><a href="#" id="6">Dubbo</a></span>
-						<span><a href="#" id="2">SpringMVC</a></span>
-						<span><a href="#" id="1">Springboot</a></span>
-						<span><a href="#" id="6">Dubbo</a></span>
-						
-					</div>	<!-- tags -->
-					
-          <div class="blog-post">
-            <a href="content.html" target="_blank" class="blog-post-title">基于SpringBoot技术栈的个人博客</a>
-            <p class="blog-post-meta">2017/8/20 By <a href="#">sa4e</a>
-            	<i class="layui-icon layui-col-md-offset7 blog-hot">&#xe756;&nbsp;</i><span style="color: #BD4147;" data-toggle="tooltip" title="热度">100&nbsp;℃</span>
+          <div class="blog-post" th:each="blog : ${blogs}">
+            <a href="content.html" th:href="@{/articles/{id}(id=${blog.id})}" target="_blank" class="blog-post-title" th:text="${blog.title}"></a>
+            <p class="blog-post-meta">[[${#dates.format(blog.createTime,'yyyy/MM/dd')}]] By <a href="#contant">sa4e</a>
+            	<i class="layui-icon layui-col-md-offset7 blog-hot">&#xe756;&nbsp;</i><span style="color: #BD4147;" data-toggle="tooltip" title="热度">[[${blog.readSize}]]&nbsp;℃</span>
             </p>
-            <p>Spring Boot技术是当前Java应用框架的热门。市面上对于Spring Boot的需求很旺盛，虽然有很多的技术资料来介绍Spring Boot这门技术，但缺乏实战。特别是在围绕Spring Boot技术栈来构建完整的企业级应用这个课程，讲师给出了自己的见解。</p>
+            <p th:text="${blog.summary}"></p>
             <p>
-            	<a href="#" class="btn btn-sm btn-warning">More...</a>
+            	<a href="#" th:href="@{/articles/{id}(id=${blog.id})}" class="btn btn-sm btn-warning">More...</a>
             </p>
           </div><!-- /.blog-post -->
 			
-          <div class="blog-post">
-            <a href="#" class="blog-post-title">其他博客</a>
-            <p class="blog-post-meta">2017/8/20 By <a href="#">Sa4e</a>
-	            <i class="layui-icon layui-col-md-offset7 blog-hot">&#xe756;&nbsp;</i><span style="color: #BD4147;">100&nbsp;℃</span>
-            </p>
-            <p>Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.</p>
-            <p>
-            	<a href="#" class="btn btn-sm btn-warning">More...</a>
-            </p>
-          </div><!-- /.blog-post -->
-			
-		  <div class="blog-post">
-	        <a href="#" class="blog-post-title">其他博客</a>
-	        <p class="blog-post-meta">2017/8/20 By <a href="#">Sa4e</a>
-            <i class="layui-icon layui-col-md-offset7 blog-hot">&#xe756;&nbsp;</i><span style="color: #BD4147;">100&nbsp;℃</span>
-	        </p>
-	        <p>Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.</p>
-	        <p>
-            	<a href="#" class="btn btn-sm btn-warning">More...</a>
-            </p>
-	      </div><!-- /.blog-post -->
-	      
-	      <div class="blog-post">
-	        <a href="#" class="blog-post-title">其他博客</a>
-	        <p class="blog-post-meta">2017/8/20 By <a href="#">Sa4e</a>
-            <i class="layui-icon layui-col-md-offset7 blog-hot">&#xe756;&nbsp;</i><span style="color: #BD4147;">100&nbsp;℃</span>
-	        </p>
-	        <p>Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.</p>
-	        <p>
-            	<a href="#" class="btn btn-sm btn-warning">More...</a>
-            </p>
-	      </div><!-- /.blog-post -->
-	      
-	      <div class="blog-post">
-	        <a href="#" class="blog-post-title">其他博客</a>
-	        <p class="blog-post-meta">2017/8/20 By <a href="#">Sa4e</a>
-            <i class="layui-icon layui-col-md-offset7 blog-hot">&#xe756;&nbsp;</i><span style="color: #BD4147;">100&nbsp;℃</span>
-	        </p>
-	        <p>Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.</p>
-	        <p>
-            	<a href="#" class="btn btn-sm btn-warning">More...</a>
-            </p>
-	      </div><!-- /.blog-post -->
 	      
 	       <div id="page">	
         	
