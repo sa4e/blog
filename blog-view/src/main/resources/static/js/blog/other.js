@@ -11,7 +11,7 @@ $(function(){
 	});
 
 	//热度tips
-//	$('[data-toggle="tooltip"]').tooltip();
+	$('[data-toggle="tooltip"]').tooltip();
 	
 	layui.use(['layer','form'],function(){
 		var layer = layui.layer
@@ -19,6 +19,9 @@ $(function(){
 		//header搜索监听
 		$('#search').click(function(){
 			var keyword = $('#keyword').val();
+			if(keyword.length == 0) {
+				keyword = "\"\"";		//如不输入关键字,默认搜索全文  "\"\ 为 ""转义
+			}
 			window.location.href = '/blogs/q/' + keyword;
 		});
 		
