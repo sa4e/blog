@@ -21,6 +21,11 @@
 			<input name="title" type="text" lay-verify="required|title" class="layui-input" placeholder="请输入标题:" />
 		</div>
 	</div>
+	<div class="layui-form-item layui-upload">
+		<label class="layui-form-label">文章图片</label>
+		<button type="button" class="layui-btn layui-btn-normal" id="chooseImg">选择图片</button>
+  		<button type="button" class="layui-btn" id="uploadStart">开始上传</button>
+	</div>
 	<div class="layui-form-item layui-form-text">
 		<label class="layui-form-label">文章摘要</label>
 		<div class="layui-input-block">
@@ -74,6 +79,7 @@
     </div>
   </div>
   <input type="hidden" name="user.uid" th:if="${session.user != null}" th:value="${session.user.uid}"/>
+  <input type="hidden" name="imgUrl"/>
   <div class="layui-form-item">
     <div class="layui-input-block">
       <button class="layui-btn" lay-submit="" lay-filter="post">发布</button>

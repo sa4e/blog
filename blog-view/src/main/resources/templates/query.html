@@ -3,42 +3,35 @@
       xmlns:th="http://www.thymeleaf.org"
 	  xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
   <head>
-  	<title>赖威良/威威猫/Sa4e's Personal Site - 关注编程 | 记录生活 | sa4e.cn</title>
+  	<title>搜索</title>
   </head>
   <body>
   	<div th:insert="~{fragments/header :: header}"></div>	<!-- header -->
-
-    <div class="blog-header">
-      <div class="container">
-        <h1 class="blog-title">Sa4e's Personal Site</h1>
-        <p class="lead blog-description">一个基于Bootstrap和SpringBoot技术栈的极简风个人博客</p>
-      </div>
-    </div>
 
     <div class="container">
 
       <div class="row">
 
-        <div class="col-sm-8 blog-main">
+        <div class="col-sm-12 blog-main">
 		
-			<div id="tags" class="blog-post">
+			<div id="tags" class="blog-post" style="padding-top: 1.3rem">
 			
-				<span th:each="tag : ${tags}">
+				<span th:each="tag : ${allTags}">
 					<a href="#" th:href="@{'/blogs/q/' + ${tag.name}}" th:id="${tag.id}" th:text="${tag.name}"></a>
 				</span>
-				
+			
 			</div>	<!-- tags -->
+			
 		<div id="mainContainer">	
-		
-			<div id="mainContainerRepleace">	
-						
-	        	<div class="row">
-					<div class="col-sm-6 blog-post" th:each="blog: ${blogs}">
+			<div id="mainContainerRepleace">				
+	       	
+	       	<div class="row">
+					<div class="col-sm-4 blog-post" th:each="blog: ${fuzzyBlogs}">
 						<div class="card">
 						    <img class="card-img-top" src="images/timg.jpg" th:src="${blog.imgUrl}" alt="Card image">
 						    <div class="card-body">
 						      <h6 class="card-title"><cite th:text="${blog.title}"></cite></h6>
-						     <p class="card-text"><cite th:text="${blog.summary}"></cite></p>
+						      <p class="card-text"><cite th:text="${blog.summary}"></cite></p>
 						       <a href="#" th:href="@{/articles/{id}(id=${blog.blogId})}" target="_blank" class="btn btn-sm btn-outline-warning">Detailed...</a>
 						    </div>
 						   
@@ -59,29 +52,12 @@
 				
         </div><!-- /.blog-main -->
 
-        <div class="col-sm-3 ml-sm-auto blog-sidebar">
-        	
-          <div id="about" class="sidebar-module sidebar-module-inset" th:insert="~{fragments/about :: about}">
-           	
-          </div>	<!-- About -->
-          
-          <div id="contant" class="sidebar-module" th:insert="~{fragments/contact :: contact}">
-          	
-          </div>	<!-- Contant -->
-          
-          <div id="link" class="sidebar-module" th:insert="~{fragments/link :: link}">
-            
-          </div>	<!-- Link -->
-          
-        </div><!-- /.blog-sidebar -->
-
       </div><!-- /.row -->
  
     </div><!-- /.container -->
 		
 	<div th:insert="~{fragments/footer :: footer}"></div>	<!-- footer -->
-	<script src="js/blog/index.js" type="text/javascript" th:src="@{/js/blog/index.js}"></script>
-    
+    <script src="js/blog/index.js" type="text/javascript" th:src="@{/js/blog/query.js}"></script>
   </body>
  	 
 </html>

@@ -1,10 +1,15 @@
 /*
- * blog index 
+ * blog query 
  */
 $(function(){
 	
-	var url = '/blogs/totalElements';
-	var totalElements = 0;				//数据总数
+	//获取href中的keyword
+	var kwHref = window.location.href;
+	var kwIndex = kwHref.lastIndexOf('/');
+	var keyword = kwHref.substr(kwIndex + 1);
+	
+	var url = '/blogs/'+ keyword +'/totalElements';
+	var totalElements = 0;
 	$.ajax({
 		async: false,					//默认true,所有请求均为异步请求,导致数据还没返回,代码就往下执行了,totalElements值为0,所以显示不出分页
 		url: url,						//设置为false,同步请求,浏览器设置断点的话默认也是同步请求
@@ -12,7 +17,7 @@ $(function(){
 		dataType: 'json',
 		data: {
 			'pageIndex': 0,
-			'pageSize': 6
+			'pageSize': 9
 		},
 		success: function(data){
 			totalElements = data.data;
@@ -20,7 +25,7 @@ $(function(){
 	});
 	
 	function paging_(obj){
-		var url = '/blogs';
+		var url = '/blogs/q/' + keyword;
 		$.ajax({
 			url: url,
 			type: 'get',
@@ -41,16 +46,17 @@ $(function(){
 		});
 	}
 	
-	layui.use(['layer', 'laypage'], function() {
+	layui.use(['layer', 'laypage','form'], function() {
 		var layer = layui.layer,
-		laypage = layui.laypage;
+		laypage = layui.laypage
+		form = layui.form;
 		
 		//执行一个laypage实例
 		laypage.render({
-			elem: 'pageable', 		//注意，这里的 pageable 是 ID，不用加 # 号
-			count: totalElements, 	//数据总数 ,从服务端得到
-			limit: 6,				//每页显示的条数(pageSize)
-			groups: 3,				//连续出现的页码个数
+			elem: 'pageable', 			//注意，这里的 pageable 是 ID，不用加 # 
+			count: totalElements, 		//数据总数 ,从服务端得到               
+			limit: 9,                   //每页显示的条数(pageSize)          
+			groups: 3,                  //连续出现的页码个数                  
 			prev: 'prev',
 			next: 'next',
 			theme: '#FFC107',

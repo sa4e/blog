@@ -1,10 +1,26 @@
 //JavaScript代码区域
-layui.use(['form','layedit','laydate','layer','element'], function(){
+layui.use(['form','layedit','laydate','layer','element','upload'], function(){
   var form = layui.form
   ,layedit = layui.layedit
   ,laydate = layui.laydate
   ,layer = layui.layer
-  ,element = layui.element;
+  ,element = layui.element
+  ,upload = layui.upload;
+  
+upload.render({
+	elem: '#chooseImg'
+	,url: '/root/image'
+	,auto: false
+	//,multiple: true
+	,bindAction: '#uploadStart'
+	,done: function(res){
+		$("input[name='imgUrl']").val(res.data.access_url);
+		layer.msg("上传成功!");
+	}
+	,error: function(){
+		layer.msg("上传失败!请稍后重试");
+	}
+});  
   
 //日期
 laydate.render({
