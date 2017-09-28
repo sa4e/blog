@@ -6,6 +6,9 @@ spring:
       username: root
       password: wuxian6636928
       driver-class-name: com.mysql.cj.jdbc.Driver
+      stat-view-servlet:
+        login-username: sa4e
+        login-password: laiI.1.II.11.
       web-stat-filter:
         enabled: true
 #JPA相关      

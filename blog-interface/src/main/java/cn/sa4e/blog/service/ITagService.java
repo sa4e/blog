@@ -2,6 +2,8 @@ package cn.sa4e.blog.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Pageable;
+
 import cn.sa4e.blog.model.Tag;
 
 /**
@@ -13,7 +15,8 @@ public interface ITagService {
 	
 	void insert(Tag tag);
 	Tag findOne(String name);
-	List<Tag> findAll();
+	List<Tag> listAllTags();
+	List<Tag> listTop30Tags(Pageable pageable);
 	void deleteByName(String name);
 	
 }

@@ -12,11 +12,13 @@ import cn.sa4e.blog.model.Blog;
 import cn.sa4e.blog.model.Category;
 import cn.sa4e.blog.model.Tag;
 import cn.sa4e.blog.model.User;
+import cn.sa4e.blog.model.es.EsBlog;
 import cn.sa4e.blog.repository.BlogRepository;
 import cn.sa4e.blog.repository.CategoryRepository;
 import cn.sa4e.blog.repository.TagRepository;
 import cn.sa4e.blog.repository.UserRepository;
 import cn.sa4e.blog.service.IBlogService;
+import cn.sa4e.blog.service.IEsBlogService;
 
 /**
 * BlogServiceImpl实现类
@@ -28,37 +30,51 @@ public class BlogServiceImpl implements IBlogService {
 
 	@Autowired
 	private BlogRepository blogRepository;
-	
 	@Autowired
 	private CategoryRepository categoryRepository;
-	
 	@Autowired
 	private TagRepository tagRepository;
-	
 	@Autowired
 	private UserRepository userRepository;
-
+	@Autowired
+	private IEsBlogService esBlogService;
+	
 	@Override
 	@Transactional
-	public void insert(Blog blog,String tagsGroup) {
-		//关联用户
-		User user = userRepository.findOne(blog.getUser().getUid());
-		blog.setUser(user);
+	public Blog save(Blog blog,String tagsGroup) {
+		boolean isNew = (blog.getId() == null);
+		EsBlog esBlog = null;
 		
-		//关联分类
-		Category category = categoryRepository.findOne(blog.getCategory().getId());
-		blog.setCategory(category);
-		
-		//关联标签
-		String[] splitTagName = tagsGroup.split(",");
-		Set<Tag> tagSet = new HashSet<>();
-		for (String tagName : splitTagName) {
-			Tag tag = tagRepository.findOne(tagName);
-			tagSet.add(tag);
+		if(isNew) {
+			//关联用户
+			User user = userRepository.findOne(blog.getUser().getUid());
+			blog.setUser(user);
+			
+			//关联分类
+			Category category = categoryRepository.findOne(blog.getCategory().getId());
+			blog.setCategory(category);
+			
+			//关联标签
+			String[] splitTagName = tagsGroup.split(",");
+			Set<Tag> tagSet = new HashSet<>();
+			for (String tagName : splitTagName) {
+				Tag tag = tagRepository.findOne(tagName);
+				tagSet.add(tag);
+			}
+			blog.setTags(tagSet);
 		}
-		blog.setTags(tagSet);
 		
-		blogRepository.save(blog);
+		Blog retunBlog = blogRepository.save(blog);
+		
+		if(isNew) {
+			esBlog = new EsBlog(retunBlog);
+		} else {
+			esBlog = esBlogService.getEsBlogByBlogId(blog.getId());
+			esBlog.update(retunBlog);
+		}
+		esBlogService.updateEsBlog(esBlog);
+		
+		return retunBlog;
 	}
 
 	@Override
@@ -72,16 +88,11 @@ public class BlogServiceImpl implements IBlogService {
 	}
 
 	@Override
-	public Blog findById(Long id) {
+	public Blog findArticlesById(Long id) {
 		Blog returnBlog = blogRepository.findOne(id);
-		returnBlog.setReadSize(returnBlog.getReadSize() + 1);
-		this.updateReadSize(returnBlog);
+		returnBlog.setReadSize(returnBlog.getReadSize() + 1);	//在原有的阅读量上+1
+		this.save(returnBlog, null);							//更新
 		return returnBlog;
-	}
-
-	@Override
-	public int updateReadSize(Blog blog) {
-		return blogRepository.updateReadSize(blog.getReadSize(), blog.getId());
 	}
 
 	@Override

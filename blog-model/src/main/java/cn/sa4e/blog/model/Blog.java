@@ -44,6 +44,9 @@ public class Blog implements Serializable{
 	private Long id; 
 	
 	@Column(nullable = false)
+	private String imgUrl;		//文章图片
+	
+	@Column(nullable = false)
 	private String title;		//文章标题
 	
 	@Column(nullable = false)
@@ -105,9 +108,10 @@ public class Blog implements Serializable{
 		
 	}
 
-	public Blog(Long id, String title, String summary, Date createTime, String content, Integer display, Integer sticky,
+	public Blog(Long id, String imgUrl, String title, String summary, Date createTime, String content, Integer display, Integer sticky,
 			Integer readSize, Category category, User user, Set<Tag> tags) {
 		this.id = id;
+		this.imgUrl = imgUrl;
 		this.title = title;
 		this.summary = summary;
 		this.createTime = createTime;
@@ -126,6 +130,14 @@ public class Blog implements Serializable{
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getImgUrl() {
+		return imgUrl;
+	}
+
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
 	}
 
 	public String getTitle() {

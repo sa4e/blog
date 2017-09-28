@@ -21,6 +21,7 @@ public interface BlogRepository extends JpaRepository<Blog, Long>{
 	 * @param readSize
 	 * @param id
 	 * @return
+	 * @deprecated
 	 */
 	@Transactional
 	@Modifying

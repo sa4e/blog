@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -36,8 +39,13 @@ public class TagServiceImpl implements ITagService {
 	}
 
 	@Override
-	public List<Tag> findAll() {
-		return tagRepository.findAll();
+	public List<Tag> listAllTags() {
+		return tagRepository.findAll(new Sort(Direction.ASC, "name"));
+	}
+	
+	@Override
+	public List<Tag> listTop30Tags(Pageable pageable) {
+		return tagRepository.findAll(pageable).getContent();
 	}
 
 	@Override
@@ -45,6 +53,6 @@ public class TagServiceImpl implements ITagService {
 	public void deleteByName(String name) {
 		tagRepository.delete(name);
 	}
-	
+
 
 }
