@@ -48,12 +48,12 @@ public class BlogController {
 							 ,BindingResult bindingResult) {
 		//TODO 发布博客完善,异常处理
 		
-		blogService.insert(blog,tagsGroup);
+		blogService.save(blog,tagsGroup);
 		return "root/index";
 	}
 	
 	/**
-	 * 富文本编辑器图片上传
+	 * 富文本编辑器图片上传、封面图片上传
 	 * @param file
 	 * @return
 	 * @throws IOException
@@ -66,7 +66,7 @@ public class BlogController {
 		
 		String originalFilename = file.getOriginalFilename();
 		UploadFileRequest uploadFileRequest = new UploadFileRequest(bucketName
-				, dirName + originalFilename + UUID.randomUUID().toString()
+				, dirName + UUID.randomUUID().toString() +originalFilename 
 				, file.getBytes());
 		return cosClient.uploadFile(uploadFileRequest);
 		

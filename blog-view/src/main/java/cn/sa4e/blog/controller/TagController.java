@@ -54,7 +54,7 @@ public class TagController {
 	 */
 	@GetMapping("/tagall")
 	public RestResult<String> findAllTag(){
-		List<Tag> all = tagService.findAll();
+		List<Tag> all = tagService.listAllTags();
 		Set<String> tagSet = new HashSet<>();
 		for (Tag tag : all) {
 			tagSet.add(tag.getName());
