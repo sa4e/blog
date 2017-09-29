@@ -1,10 +1,25 @@
+#druid数据源配置
 spring:
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost/blog?useSSL=false&serverTimezone=UTC&characterEncoding=utf-8
-    username: root
-    password: root
+    druid:
+      url: jdbc:mysql://localhost:3306/blog?useSSL=false&serverTimezone=UTC&characterEncoding=utf-8
+      username: root
+      password: laiI.1.II.11.
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      stat-view-servlet:
+        login-username: sa4e
+        login-password: laiI.1.II.11.
+      web-stat-filter:
+        enabled: true
+#JPA相关      
   jpa:
+    open-in-view: true
     hibernate:
       ddl-auto: none
-    show-sql: true
+    
+#日志配置      
+#logging:
+#  level:
+#    root: INFO
+#    org.springframework.web: INFO
+#  path: E:\log
