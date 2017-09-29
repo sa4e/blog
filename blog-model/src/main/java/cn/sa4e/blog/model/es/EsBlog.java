@@ -10,6 +10,7 @@ import org.springframework.data.elasticsearch.annotations.DateFormat;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldIndex;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import cn.sa4e.blog.model.Blog;
 import cn.sa4e.blog.model.Category;
@@ -26,9 +27,14 @@ public class EsBlog implements Serializable{
 
 	private static final long serialVersionUID = 551865097890485798L;
 	
+	/*
+	 *一旦添加了@Filed注解，所有的默认值都不再生效。此外，如果添加了@Filed注解，那么type字段必须指定。 
+	 *否则报错:No type specified for field
+	 */
+	
 	@Id
 	private String id;	//主键
-	@Field(index = FieldIndex.not_analyzed)	//不做全文检索字段  
+	@Field(index = FieldIndex.not_analyzed,type = FieldType.Long)	//不做全文检索字段  
 	private Long blogId; //Blog实体id
 	private String title;
 	private String imgUrl;
@@ -36,13 +42,13 @@ public class EsBlog implements Serializable{
 	private String content;
 	private Category category;
 	private Set<Tag> tags = new HashSet<>();
-	@Field(format = DateFormat.date_time,index = FieldIndex.not_analyzed)
+	@Field(format = DateFormat.date_time,index = FieldIndex.not_analyzed,type = FieldType.Date)
 	private Date createTime;
-	@Field(index = FieldIndex.not_analyzed)
+	@Field(index = FieldIndex.not_analyzed,type = FieldType.Object)
 	private User user;
-	@Field(index = FieldIndex.not_analyzed)
+	@Field(index = FieldIndex.not_analyzed,type = FieldType.Integer)
 	private Integer display;
-	@Field(index = FieldIndex.not_analyzed)
+	@Field(index = FieldIndex.not_analyzed,type = FieldType.Integer)
 	private Integer readSize ;
 	
 	public EsBlog() {
