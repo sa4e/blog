@@ -118,6 +118,8 @@ public class MainController {
 			@RequestParam(value = "pageSize", required = false, defaultValue = "9") int pageSize,
 			Model model) {
 		
+		//TODO 搜索优化及异常处理
+		
 		Sort sort = new Sort(Direction.DESC,"createTime");
 		Pageable pageable = new PageRequest(pageIndex, pageSize, sort);
 		Page<EsBlog> page = esBlogService.listFuzzytEsBlogs(keyword, pageable);
