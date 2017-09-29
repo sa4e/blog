@@ -42,7 +42,7 @@ public class EsBlog implements Serializable{
 	private String content;
 	private Category category;
 	private Set<Tag> tags = new HashSet<>();
-	@Field(format = DateFormat.date_time,index = FieldIndex.not_analyzed,type = FieldType.Date)
+	@Field(index = FieldIndex.not_analyzed,type = FieldType.Date)
 	private Date createTime;
 	@Field(index = FieldIndex.not_analyzed,type = FieldType.Object)
 	private User user;
