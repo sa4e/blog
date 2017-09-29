@@ -32,7 +32,7 @@ $(function(){
 				title: _tiitle,
 				content: _content,
 				shadeClose: true,
-				maxWidth: 400
+				maxWidth: 250
 			});
 		}
 		

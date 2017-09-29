@@ -41,9 +41,9 @@
 
     <script th:inline="javascript">
     	$(function(){
-    		$('#content img').addClass('img-fluid img-thumbnail');
-    		
     		$('#content').html([[${blog.content}]]);
+    		$('#content img').addClass('img-fluid img-thumbnail');	//注意顺序
+    		
     	});
     </script>
 </body>
