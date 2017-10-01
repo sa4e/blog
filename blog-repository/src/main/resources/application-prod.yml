@@ -18,8 +18,8 @@ spring:
       ddl-auto: none
     
 #日志配置      
-#logging:
-#  level:
-#    root: INFO
-#    org.springframework.web: INFO
-#  path: E:\log
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+  path: /home/blog-log

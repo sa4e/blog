@@ -197,7 +197,7 @@ public class MainController {
 	@GetMapping("/archives")
 	public ModelAndView getBlogsOrderByCreateTime() {
 		List<Blog> findAllOrderByCreateTimeAsc = blogService.findAllOrderByCreateTimeAsc();
-		return new ModelAndView("/archives", "arcs", findAllOrderByCreateTimeAsc);
+		return new ModelAndView("archives", "arcs", findAllOrderByCreateTimeAsc);
 	}
 	
 	@GetMapping("/about")
