@@ -17,7 +17,9 @@
 			<div id="tags" class="blog-post" style="padding-top: 1.3rem">
 			
 				<span th:each="tag : ${allTags}">
-					<a href="#" th:href="@{'/blogs/q/' + ${tag.name}}" th:id="${tag.id}" th:text="${tag.name}"></a>
+					<a href="#" th:href="@{'/blogs/q/' + ${tag.name}}" th:id="${tag.id}" th:text="${tag.name}" 
+					data-toggle="tooltip" data-placement="top" title="search" th:title="'search ' + ${tag.name}"
+					></a>
 				</span>
 			
 			</div>	<!-- tags -->
