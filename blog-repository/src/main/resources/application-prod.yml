@@ -22,4 +22,4 @@ logging:
   level:
     root: INFO
     org.springframework.web: INFO
-  path: /home/blog-log
+  path: /home/blog/log

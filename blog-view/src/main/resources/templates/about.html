@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+  <head>
+  <title>赖威良/威威猫/Sa4e's Personal Site - 关注编程 | 记录生活 | sa4e.cn</title>
+  </head>
+  <body>
+  	
+  	<div th:insert="~{fragments/header :: header}"></div>	<!-- header -->
+				
+		<div class="blog-header">
+      <div class="container">
+        <h1 class="blog-title">About</h1>
+        <p class="lead blog-description">About this site</p>
+      </div>
+    </div>	
+			
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-8">
+					<p>
+				      	站长:<em>Sa4e</em> 中文名:<em>赖威良&nbsp;&nbsp;</em>
+				 		本站<strong>关注编程,系统架构,开源技术,</strong>记录开发过程中踩过的坑,遇到坑不可怕,可怕的是一而再再而三地往坑里头跳,好记性不如烂笔头,权且记下,利于回顾,也许还能够帮到你。
+			     	</p>
+			     	
+			     	<hr>
+			     	
+			     	<p>
+			     		该站是本人第一个独立开发完成的Web应用项目,主要有两大技术栈:<strong>Bootstrap,SpringBoot</strong>,
+			     		分为前台和后台,前台就是你现在看到的样子,后台用来管理网站内容。整体设计风格以简洁为主,背景色是我比较喜欢的护眼暖色调(<code>#FFFFCC</code>),多一分阅读,少一份伤害。
+			     		整个项目从0到1所涉及的技术不仅限于某个领域,以整合多个技术点,实现一个完整前后端的Web应用。
+			     	</p>
+			     	
+			     	<p>
+			     		万事开头难,前期在编写相对生疏的前端时显得非常吃力,前台的UI设计、复杂交互动作的js编写都是原生的编写,这就有区别于像<strong>WordPress</strong>这类内容管理系统（CMS）可以省却对前台页面的设计和后台技术的担心,
+			     		通过安插件等方式完成快速搭建个人网站。回头翻下记录贴,前台编写历时接近一个月,或许是自己对产品要求严格,很多地方喜欢抠细节,为了做出满意的效果往往能折腾上一天的时间,
+			     		再加上对于老本行(服务端)的熟悉,在编写前台的同时也在考虑页面数据的动态交互,页面渲染,静态化等问题,如一些ajax的异步请求,能想到的基本都写好了。所以在编写服务端时,就不再考虑页面元素,而是专注于处理复杂的业务逻辑。
+			     		 期间js、jq的操作基本都玩烂了,这也是为什么我的前端技术栈能从生疏到熟练的一大原因吧。
+			     	</p>
+			     	
+			     	<p>
+			     		得益于<strong>腾讯云,阿里云</strong>对大学生云计算的扶持计划,本人能以极低的价格购下云服务器作为应用的生产环境。
+			     		期间购买<strong>域名,域名备案,云解析,SSL,CDN,对象存储,负载均衡</strong>等都有去了解,也算是折腾了时下火爆的云计算技术。
+			     	</p>
+			     	
+			     	<p>
+			     		万丈高楼平地起,在软件工程里系统架构就如同建筑物的地基,
+			     		地基不固,房子能稳?在前期项目整体架构的搭建中,或许是自己眼高手低,又或许是自己经验不足的缺,没有考虑到实际的应用场景,运用了自己无法驾驭的技术点,到了某个功能一直报错而无法解决,
+			     		最后不得已抛弃该技术点,从整体架构上改变,硬生生地把原来一个独立的项目整合成一个子模块。这是我在编写服务端时犯下的比较严重的错误了,将其记下,警示自己。
+			     	</p>
+			     	
+			     	<p>			     		
+			     		最后,项目的第一个版本终于上线了,部署于<strong>阿里云Centos7。</strong>当然自身还有很多不足,还有许多知识需要学习,许多技能需要修炼,耻于码农的<code>ctrl + c</code>,
+			     		也愿我有一天能写出如诗般的代码,哈哈哈。
+			     	</p>
+			     	
+			     	<p>
+			     		记录贴: <br>
+			     		<cite><a href="#" th:href="@{/articles/22}" target="_blank">blog 一个基于SpringBoot技术栈的个人博客(前端)</a></cite>	<br>
+			     		<cite><a href="#" th:href="@{/articles/21}" target="_blank">blog 一个基于SpringBoot技术栈的个人博客(服务端)</a></cite>
+			     	</p>
+				</div>
+				
+				<div class="col-sm-3 ml-sm-auto blog-sidebar">
+        	
+          <div id="about" class="sidebar-module sidebar-module-inset" th:insert="~{fragments/about :: about}">
+            
+          </div>	<!-- About -->
+          
+          <div id="contant" class="sidebar-module" th:insert="~{fragments/contact :: contact}">
+          	
+          </div>	<!-- Contant -->
+          
+          <div id="link" class="sidebar-module" th:insert="~{fragments/link :: link}">
+           
+          </div>	<!-- Link -->
+          
+        </div><!-- /.blog-sidebar -->
+			</div>
+		</div>
+    
+		<div th:insert="~{fragments/footer :: footer}"></div>	<!-- footer -->
+		
+  </body>
+ 	 
+</html>

@@ -3,7 +3,7 @@
   <parent>
     <groupId>cn.sa4e</groupId>
     <artifactId>blog</artifactId>
-    <version>0.0.3-SNAPSHOT</version>
+    <version>1.0.0-official</version>
   </parent>
 	<artifactId>blog-service</artifactId>
   
@@ -11,12 +11,12 @@
   	<dependency>
   		<groupId>cn.sa4e</groupId>
 	    <artifactId>blog-interface</artifactId>
-	    <version>0.0.3-SNAPSHOT</version>
+	    <version>1.0.0-official</version>
   	</dependency>
   	<dependency>
   		<groupId>cn.sa4e</groupId>
 	    <artifactId>blog-repository</artifactId>
-	    <version>0.0.3-SNAPSHOT</version>
+	    <version>1.0.0-official</version>
   	</dependency>
   	
 	<dependency>
